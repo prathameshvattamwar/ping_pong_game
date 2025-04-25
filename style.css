@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-color-start: #667eea;
+    --primary-color-end: #764ba2;
+    --background-gradient: linear-gradient(135deg, var(--primary-color-start) 0%, var(--primary-color-end) 100%);
+    --board-bg: #1a1a2e;
+    --paddle-color: #f0f0f0;
+    --ball-color: #ffffff;
+    --net-color: rgba(240, 240, 240, 0.3);
+    --text-light: #e0e0e0;
+    --text-highlight: #ffffff;
+    --score-color: #fbc531;
+    --button-bg: #28a745; /* Green button */
+    --button-bg-gradient: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    --button-hover-gradient: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+    --button-pause-bg: #ffc107; /* Yellow for pause */
+    --button-pause-gradient: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    --button-pause-hover-gradient: linear-gradient(135deg, #e0a800 0%, #c69500 100%);
+    --button-restart-bg: #dc3545; /* Red for restart */
+    --button-restart-gradient: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    --button-restart-hover-gradient: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --overlay-bg: rgba(0, 0, 0, 0.7);
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--background-gradient);
+    color: var(--text-light);
+    padding: 10px;
+    overflow: hidden;
+}
+
+.game-wrapper {
+    background-color: var(--board-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.score-board {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-highlight);
+}
+
+.player-score {
+    color: var(--score-color);
+}
+
+.computer-score {
+    color: var(--score-color);
+}
+
+
+#pongCanvas {
+    background-color: #000000;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    max-height: calc(100vh - 200px);
+    cursor: none;
+}
+
+.controls-area {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.controls-area button {
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-light);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#startButton { background: var(--button-bg-gradient); }
+#startButton:hover { background: var(--button-hover-gradient); transform: translateY(-2px); }
+
+#pauseButton { background: var(--button-pause-gradient); }
+#pauseButton:hover { background: var(--button-pause-hover-gradient); transform: translateY(-2px); }
+
+#restartButton { background: var(--button-restart-gradient); }
+#restartButton:hover { background: var(--button-restart-hover-gradient); transform: translateY(-2px); }
+
+.controls-area button:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.instructions {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    opacity: 0.8;
+}
+
+.message-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+}
+
+#startOverlay {
+     pointer-events: auto; 
+     cursor: default; 
+     display: none !important;
+}
+
+.message-overlay p {
+    color: var(--text-highlight);
+    font-size: 1.8rem;
+    font-weight: 600;
+    background-color: rgba(44, 44, 84, 0.8);
+    padding: 20px 30px;
+    border-radius: 10px;
+    pointer-events: none; /* Text itself shouldn't block clicks */
+}
+
+@media (max-width: 850px) {
+    .score-board {
+        max-width: 90vw;
+        font-size: 1rem;
+    }
+     #pongCanvas {
+         max-width: 90vw;
+     }
+    .instructions {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+     .game-wrapper {
+        padding: 15px;
+     }
+     .score-board {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+        margin-bottom: 10px;
+     }
+     .controls-area {
+         gap: 10px;
+     }
+     .controls-area button {
+        padding: 8px 18px;
+        font-size: 0.9rem;
+     }
+     .instructions {
+        margin-top: 10px;
+        font-size: 0.75rem;
+        text-align: center;
+     }
+      .message-overlay p {
+        font-size: 1.5rem;
+        padding: 15px 25px;
+      }
+}

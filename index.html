@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping Pong Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="score-board">
+            <div class="score player-score">Player: 0</div>
+            <div class="score computer-score">Computer: 0</div>
+        </div>
+        <canvas id="pongCanvas"></canvas>
+        <div class="controls-area">
+            <button id="startButton">Start</button>
+            <button id="pauseButton">Pause</button>
+            <button id="restartButton">Restart</button>
+        </div>
+        <div class="instructions">
+            Control: Move Mouse Up/Down | P: Pause/Resume | R: Restart
+        </div>
+         <div class="message-overlay" id="pauseOverlay" style="display: none;">
+            <p>Paused</p>
+        </div>
+         <div class="message-overlay" id="startOverlay">
+            <p>Press Start or Move Mouse to Begin</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
